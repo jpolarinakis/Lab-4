@@ -1,22 +1,98 @@
 package assignment4;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-public class Assign4Driver
-{
-    public static void main(String[] args)
-    {
-        // Create a word ladder solver object
-        Assignment4Interface wordLadderSolver = new WordLadderSolver();
+public class Assign4Driver {
 
-        try 
-        {
-            List<String> result = wordLadderSolver.computeLadder("money", "honey");
-            boolean correct = wordLadderSolver.validateResult("money", "honey", result);
-        } 
-        catch (NoSuchLadderException e) 
-        {
-            e.printStackTrace();
-        }
-    }
+	private static List<String> dictionary;
+	private static List<String> inputs;
+
+	public static void main(String[] args) {
+
+		InitializeInputs(args);
+		InitializeDictionary();
+		
+		for (int i = 0; i < inputs.size(); i++ ) {
+			Scanner scanner = new Scanner(inputs.get(i));
+		
+			String firstWord = null;
+			try {
+				firstWord = scanner.next();
+			} catch (Exception e) {
+				
+				System.out.println("There is no first word");
+				continue;
+			}
+			
+			
+			
+			
+			
+			
+		}
+
+		// Create a word ladder solver object
+		Assignment4Interface wordLadderSolver = new WordLadderSolver();
+
+		try {
+			List<String> result = wordLadderSolver.computeLadder("money",
+					"honey");
+			boolean correct = wordLadderSolver.validateResult("money", "honey",
+					result);
+		} catch (NoSuchLadderException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static void InitializeDictionary() {
+		// Initializing dictionary from A4words file
+		dictionary = new ArrayList<String>();
+
+		try {
+			FileReader freader = new FileReader("A4words.dat");
+			BufferedReader reader = new BufferedReader(freader);
+			for (String s = reader.readLine(); s != null; s = reader.readLine()) {
+				if (s.charAt(0) == '*')
+					continue;
+				s = s.substring(0, 5);
+				dictionary.add(s);
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("Error: File not found. Exiting...");
+			System.exit(-1);
+		} catch (IOException e) {
+			System.out.println("Error: IO exception. Exiting...");
+			System.exit(-1);
+		}
+
+	}
+
+	private static void InitializeInputs(String[] args) {
+		// Check if there is a valid file in the argument
+		if (args.length != 1) {
+			System.err.println("Error: Incorrect number of command line arguments");
+			System.exit(-1);
+		}
+		
+		// Open file; file name specified in args (command line)
+		try {
+			FileReader freader = new FileReader(args[0]);
+			BufferedReader reader = new BufferedReader(freader);
+			for (String s = reader.readLine(); s != null; s = reader.readLine()) {
+				inputs.add(s);
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("Error: File not found. Exiting...");
+			System.exit(-1);
+		} catch (IOException e) {
+			System.out.println("Error: IO exception. Exiting...");
+			System.exit(-1);
+		}
+	}
 }
