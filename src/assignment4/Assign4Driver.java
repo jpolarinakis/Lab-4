@@ -15,9 +15,7 @@ public class Assign4Driver {
 
 	public static void main(String[] args) {
 
-		InitializeInputs(args);
-		InitializeDictionary();
-		
+		InitializeInputs(args);		
 		for (int i = 0; i < inputs.size(); i++ ) {
 			Scanner scanner = new Scanner(inputs.get(i));
 		
@@ -29,12 +27,6 @@ public class Assign4Driver {
 				System.out.println("There is no first word");
 				continue;
 			}
-			
-			
-			
-			
-			
-			
 		}
 
 		// Create a word ladder solver object
@@ -50,35 +42,14 @@ public class Assign4Driver {
 		}
 	}
 
-	private static void InitializeDictionary() {
-		// Initializing dictionary from A4words file
-		dictionary = new ArrayList<String>();
-
-		try {
-			FileReader freader = new FileReader("A4words.dat");
-			BufferedReader reader = new BufferedReader(freader);
-			for (String s = reader.readLine(); s != null; s = reader.readLine()) {
-				if (s.charAt(0) == '*')
-					continue;
-				s = s.substring(0, 5);
-				dictionary.add(s);
-			}
-		} catch (FileNotFoundException e) {
-			System.out.println("Error: File not found. Exiting...");
-			System.exit(-1);
-		} catch (IOException e) {
-			System.out.println("Error: IO exception. Exiting...");
-			System.exit(-1);
-		}
-
-	}
-
 	private static void InitializeInputs(String[] args) {
 		// Check if there is a valid file in the argument
 		if (args.length != 1) {
 			System.err.println("Error: Incorrect number of command line arguments");
 			System.exit(-1);
 		}
+		
+		inputs = new ArrayList<String>();
 		
 		// Open file; file name specified in args (command line)
 		try {
