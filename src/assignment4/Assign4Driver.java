@@ -17,10 +17,12 @@ public class Assign4Driver {
 		//Assignment4Interface wordLadderSolver = new WordLadderSolver();
 		WordLadderSolver word = new WordLadderSolver();
 		InitializeInputs(args);		
+		String firstWord = null;
+		String secondWord = null;
 		for (int i = 0; i < inputs.size(); i++ ) {
 			Scanner scanner = new Scanner(inputs.get(i));
 		
-			String firstWord = null;
+			//String firstWord = null;
 			try {
 				firstWord = scanner.next();
 			} catch (Exception e) {
@@ -28,7 +30,7 @@ public class Assign4Driver {
 				continue;
 			}
 			
-			String secondWord = null;
+			//String secondWord = null;
 			try {
 				secondWord = scanner.next();
 			} catch (Exception e) {
@@ -41,13 +43,13 @@ public class Assign4Driver {
 		
 
 		try {
-			List<String> result = word.computeLadder("honey",
-					"honey");
+			List<String> result = word.computeLadder(firstWord,
+					secondWord);
 			
 			for (int x = 0; x < result.size(); x ++) {
 				System.out.println(result.get(x));
 			}
-			boolean correct = word.validateResult("money", "honey",
+			boolean correct = word.validateResult(firstWord, secondWord,
 					result);
 		} catch (NoSuchLadderException e) {
 			e.printStackTrace();

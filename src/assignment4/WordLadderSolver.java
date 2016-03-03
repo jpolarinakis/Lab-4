@@ -91,7 +91,9 @@ public class WordLadderSolver implements Assignment4Interface {
 			if (prevWords.contains(middleWord))
 				continue;
 			prevWords.add(startWord);
-			return computeLadderRecursively(middleWord, endWord, prevWords);
+			List<String> test = computeLadderRecursively(middleWord, endWord, prevWords);
+			if(test != null)
+				return test;
 		}
 		
 		return null;
@@ -100,12 +102,9 @@ public class WordLadderSolver implements Assignment4Interface {
 	// @Override
 	public boolean validateResult(String startWord, String endWord,
 			List<String> wordLadder) {
-		throw new UnsupportedOperationException("Not implemented yet!");
-		/*
-		 * boolean ret = false;
-		 * 
-		 * return ret;
-		 */
+		//throw new UnsupportedOperationException("Not implemented yet!");
+		return OneLetterDifference(startWord,endWord);
+		
 	}
 	
 	public static boolean OneLetterDifference(String first, String second) {
