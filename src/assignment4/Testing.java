@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class Testing {
 
-	@Test
+	//@Test
 	public void testIsDifferent() {
 		System.out.println(WordLadderSolver.letterDifference("asdf", "asda"));
 		assertTrue(WordLadderSolver.letterDifference("asdf", "asda") == 1);
@@ -19,4 +19,9 @@ public class Testing {
 		
 	}
 
+	@Test
+	public void testSolveWordLadder() {
+		
+	}
+	
 }

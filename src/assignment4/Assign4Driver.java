@@ -10,11 +10,12 @@ import java.util.Scanner;
 
 public class Assign4Driver {
 
-	private static List<String> dictionary;
 	private static List<String> inputs;
 
 	public static void main(String[] args) {
-
+		// Create a word ladder solver object
+		//Assignment4Interface wordLadderSolver = new WordLadderSolver();
+		WordLadderSolver word = new WordLadderSolver();
 		InitializeInputs(args);		
 		for (int i = 0; i < inputs.size(); i++ ) {
 			Scanner scanner = new Scanner(inputs.get(i));
@@ -23,19 +24,26 @@ public class Assign4Driver {
 			try {
 				firstWord = scanner.next();
 			} catch (Exception e) {
-				
 				System.out.println("There is no first word");
+				continue;
+			}
+			
+			String secondWord = null;
+			try {
+				secondWord = scanner.next();
+			} catch (Exception e) {
+				
+				System.out.println("There is no second word");
 				continue;
 			}
 		}
 
-		// Create a word ladder solver object
-		Assignment4Interface wordLadderSolver = new WordLadderSolver();
+		
 
 		try {
-			List<String> result = wordLadderSolver.computeLadder("money",
+			List<String> result = word.computeLadder("money",
 					"honey");
-			boolean correct = wordLadderSolver.validateResult("money", "honey",
+			boolean correct = word.validateResult("money", "honey",
 					result);
 		} catch (NoSuchLadderException e) {
 			e.printStackTrace();
