@@ -41,8 +41,12 @@ public class Assign4Driver {
 		
 
 		try {
-			List<String> result = word.computeLadder("money",
+			List<String> result = word.computeLadder("honey",
 					"honey");
+			
+			for (int x = 0; x < result.size(); x ++) {
+				System.out.println(result.get(x));
+			}
 			boolean correct = word.validateResult("money", "honey",
 					result);
 		} catch (NoSuchLadderException e) {
