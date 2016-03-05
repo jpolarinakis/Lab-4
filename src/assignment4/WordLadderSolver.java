@@ -54,7 +54,9 @@ public class WordLadderSolver implements Assignment4Interface {
 			}
 		}
 		
-		
+		System.out.println(dictionaryMap.get("twerp").toString());
+		System.out.println(dictionaryMap.get("twirl").toString());
+
 		System.out.println(System.currentTimeMillis());
 
 	}
@@ -91,20 +93,28 @@ public class WordLadderSolver implements Assignment4Interface {
 			if (prevWords.contains(middleWord))
 				continue;
 			prevWords.add(startWord);
+
 			List<String> test = computeLadderRecursively(middleWord, endWord, prevWords);
 			if(test != null)
 				return test;
+
+			prevWords.remove(prevWords.size() - 1);
 		}
-		
-		return null;
+			return null;
 		}
 
 	// @Override
 	public boolean validateResult(String startWord, String endWord,
 			List<String> wordLadder) {
-		//throw new UnsupportedOperationException("Not implemented yet!");
-		return OneLetterDifference(startWord,endWord);
-		
+
+
+		String prevWord = startWord;
+		for (int x = 1; x < wordLadder.size(); x++) {
+			if (!OneLetterDifference(prevWord, wordLadder.get(x)))
+				return false;
+			prevWord = wordLadder.get(x);
+		}
+		return true;
 	}
 	
 	public static boolean OneLetterDifference(String first, String second) {

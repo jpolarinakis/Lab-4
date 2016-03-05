@@ -43,14 +43,24 @@ public class Assign4Driver {
 		
 
 		try {
+<<<<<<< Updated upstream
 			List<String> result = word.computeLadder(firstWord,
 					secondWord);
+=======
+			List<String> result = word.computeLadder("stone",
+					"money");
+>>>>>>> Stashed changes
 			
 			for (int x = 0; x < result.size(); x ++) {
 				System.out.println(result.get(x));
 			}
+<<<<<<< Updated upstream
 			boolean correct = word.validateResult(firstWord, secondWord,
+=======
+			boolean correct = word.validateResult("stone", "money",
+>>>>>>> Stashed changes
 					result);
+			System.out.println(correct);
 		} catch (NoSuchLadderException e) {
 			e.printStackTrace();
 		}
