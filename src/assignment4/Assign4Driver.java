@@ -38,24 +38,26 @@ public class Assign4Driver {
 				System.out.println("There is no second word");
 				continue;
 			}
+			
+			try {
+				List<String> result = word.computeLadder(firstWord,
+						secondWord);
+
+				
+				for (int x = 0; x < result.size(); x ++) {
+					System.out.println(result.get(x));
+				}
+
+				boolean correct = word.validateResult(firstWord, secondWord, result);
+				System.out.println(correct);
+			} catch (NoSuchLadderException e) {
+				e.printStackTrace();
+			}
 		}
 
 		
 
-		try {
-			List<String> result = word.computeLadder(firstWord,
-					secondWord);
 
-			
-			for (int x = 0; x < result.size(); x ++) {
-				System.out.println(result.get(x));
-			}
-
-			boolean correct = word.validateResult(firstWord, secondWord, result);
-			System.out.println(correct);
-		} catch (NoSuchLadderException e) {
-			e.printStackTrace();
-		}
 	}
 
 	private static void InitializeInputs(String[] args) {
