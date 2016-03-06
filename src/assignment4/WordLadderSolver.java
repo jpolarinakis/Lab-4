@@ -27,7 +27,7 @@ public class WordLadderSolver implements Assignment4Interface {
 	
 	public WordLadderSolver() {
 		
-		System.out.println(System.currentTimeMillis());
+		//System.out.println(System.currentTimeMillis());
 		dictionaryMap = new HashMap<String, List<String>>();
 		try {
 			FileReader freader = new FileReader("A4words.dat");
@@ -55,7 +55,7 @@ public class WordLadderSolver implements Assignment4Interface {
 		}
 		
 		
-		System.out.println(System.currentTimeMillis());
+		//System.out.println(System.currentTimeMillis());
 
 	}
 	
@@ -71,27 +71,28 @@ public class WordLadderSolver implements Assignment4Interface {
 		if (!dictionaryMap.containsKey(endWord))
 			throw new NoSuchLadderException("Last word is not in dictionary");
 		
-		List<String> retObj = computeLadderRecursively(startWord, endWord, new ArrayList<String>());
+		List<String> retObj = computeLadderRecursively(startWord, endWord, new ArrayList<String>(), new ArrayList<String>());
 		
 		if (retObj == null){
 			System.out.println("No ladder for " + startWord + " and " + endWord);}
 			return retObj;
 	}
 	
-	private List<String> computeLadderRecursively(String startWord, String endWord, List<String> prevWords) {
-		
+	private List<String> computeLadderRecursively(String startWord, String endWord, List<String> prevWords, List<String> allWords) {
 		
 		if (dictionaryMap.get(startWord).contains(endWord)) {
 			prevWords.add(startWord);
 			prevWords.add(endWord);
 			return prevWords;
 		}
+		
 		List<String> middleWords = dictionaryMap.get(startWord);
 		for (String middleWord: dictionaryMap.get(startWord)) {
-			if (prevWords.contains(middleWord))
+			if (allWords.contains(middleWord))
 				continue;
 			prevWords.add(startWord);
-			List<String> test = computeLadderRecursively(middleWord, endWord, prevWords);
+			allWords.add(startWord);
+			List<String> test = computeLadderRecursively(middleWord, endWord, prevWords, allWords);
 			if(test != null){
 				return test;}
 			prevWords.remove(prevWords.size() - 1);
