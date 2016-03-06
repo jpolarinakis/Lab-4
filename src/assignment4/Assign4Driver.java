@@ -19,6 +19,24 @@ public class Assign4Driver {
 	public static void main(String[] args) throws Throwable {
 		WordLadderSolver word = new WordLadderSolver();
 		InitializeInputs(args);		
+		/*
+		 * Begin test code
+		 * */
+		/*
+		Testing test = new Testing();
+		test.testIsDifferent();
+		test.testSolveWordLadder();
+	    Result results = JUnitCore.runClasses(Testing.class);
+	    for (Failure failure : results.getFailures()) {
+	      System.out.println(failure.toString());
+	      System.out.println("something is happening");
+	    }
+		System.err.println("Test has concluded, exiting...");
+		System.exit(-1);
+		*/
+		/*
+		 * End test code
+		 * */
 		String firstWord = null;
 		String secondWord = null;
 		for (int i = 0; i < inputs.size(); i++ ) {
@@ -42,7 +60,8 @@ public class Assign4Driver {
 				List<String> result = word.computeLadder(firstWord,
 						secondWord);
 
-				
+				if(result == null){}
+				else{
 				for (int x = 0; x < result.size(); x ++) {
 					System.out.println(result.get(x));
 				}
@@ -51,7 +70,8 @@ public class Assign4Driver {
 				boolean correct = word.validateResult(firstWord, secondWord,result);
 				System.out.println(correct);
 				System.out.println("********************************************************");
-
+				System.out.println("");
+			}
 				
 			} catch (NoSuchLadderException e) {
 				e.printStackTrace();
