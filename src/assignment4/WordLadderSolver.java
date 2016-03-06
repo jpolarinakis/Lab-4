@@ -54,9 +54,7 @@ public class WordLadderSolver implements Assignment4Interface {
 			}
 		}
 		
-		System.out.println(dictionaryMap.get("twerp").toString());
-		System.out.println(dictionaryMap.get("twirl").toString());
-
+		
 		System.out.println(System.currentTimeMillis());
 
 	}
@@ -75,9 +73,8 @@ public class WordLadderSolver implements Assignment4Interface {
 		
 		List<String> retObj = computeLadderRecursively(startWord, endWord, new ArrayList<String>());
 		
-		if (retObj == null)
-			throw new NoSuchLadderException("No ladder for " + startWord + " and " + endWord);
-		else
+		if (retObj == null){
+			System.out.println("No ladder for " + startWord + " and " + endWord);}
 			return retObj;
 	}
 	
@@ -89,32 +86,31 @@ public class WordLadderSolver implements Assignment4Interface {
 			prevWords.add(endWord);
 			return prevWords;
 		}
+		List<String> middleWords = dictionaryMap.get(startWord);
 		for (String middleWord: dictionaryMap.get(startWord)) {
 			if (prevWords.contains(middleWord))
 				continue;
 			prevWords.add(startWord);
-
 			List<String> test = computeLadderRecursively(middleWord, endWord, prevWords);
-			if(test != null)
-				return test;
-
+			if(test != null){
+				return test;}
 			prevWords.remove(prevWords.size() - 1);
 		}
-			return null;
+		
+		return null;
 		}
 
 	// @Override
 	public boolean validateResult(String startWord, String endWord,
-			List<String> wordLadder) {
-
-
+			List<String> wordLadder) {		
 		String prevWord = startWord;
-		for (int x = 1; x < wordLadder.size(); x++) {
-			if (!OneLetterDifference(prevWord, wordLadder.get(x)))
-				return false;
-			prevWord = wordLadder.get(x);
-		}
-		return true;
+ 		for (int x = 1; x < wordLadder.size(); x++) {
+ 			if (!OneLetterDifference(prevWord, wordLadder.get(x)))
+ 				return false;
+ 			prevWord = wordLadder.get(x);
+ 		}
+ 		return true;
+		
 	}
 	
 	public static boolean OneLetterDifference(String first, String second) {

@@ -8,13 +8,34 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
 public class Assign4Driver {
 
 	private static List<String> inputs;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Throwable {
 		// Create a word ladder solver object
-		//Assignment4Interface wordLadderSolver = new WordLadderSolver();
+		/*
+		 * Begin test code
+		 * */
+		/*
+		Testing test = new Testing();
+		test.testIsDifferent();
+		test.testSolveWordLadder();
+	    Result results = JUnitCore.runClasses(Testing.class);
+	    for (Failure failure : results.getFailures()) {
+	      System.out.println(failure.toString());
+	      System.out.println("something is happening");
+	    }
+		System.err.println("Test has concluded, exiting...");
+		System.exit(-1);
+		*/
+		/*
+		 * End test code
+		 * */
 		WordLadderSolver word = new WordLadderSolver();
 		InitializeInputs(args);		
 		String firstWord = null;
@@ -38,7 +59,6 @@ public class Assign4Driver {
 				System.out.println("There is no second word");
 				continue;
 			}
-			
 			try {
 				List<String> result = word.computeLadder(firstWord,
 						secondWord);
@@ -47,9 +67,13 @@ public class Assign4Driver {
 				for (int x = 0; x < result.size(); x ++) {
 					System.out.println(result.get(x));
 				}
-
-				boolean correct = word.validateResult(firstWord, secondWord, result);
+				System.out.println("********************************************************");
+				System.out.println("The results of the test are: ");
+				boolean correct = word.validateResult(firstWord, secondWord,result);
 				System.out.println(correct);
+				System.out.println("********************************************************");
+
+				
 			} catch (NoSuchLadderException e) {
 				e.printStackTrace();
 			}
