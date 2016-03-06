@@ -17,6 +17,7 @@ public class Testing {
 	 * Tests if there is are differences between the strings
 	 * */
 	public void testIsDifferent() {
+		//
 		//System.out.println(WordLadderSolver.letterDifference("asdf", "asda"));
 		assertTrue(WordLadderSolver.OneLetterDifference("asdf", "asda"));
 		assertTrue(WordLadderSolver.OneLetterDifference("money", "coney"));
@@ -32,7 +33,8 @@ public class Testing {
 
 	@Test
 	/*
-	 * Will test to ensure the accuracy of the program
+	 * Will test to ensure the accuracy of the program. Tests various programs as well as
+	 * the total accuracy in a WBT and BBT manner
 	 * */
 	public void testSolveWordLadder() throws Throwable {
 		/*
